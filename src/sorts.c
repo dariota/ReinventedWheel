@@ -1,52 +1,49 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int L, R;
 
-void sortsPartition(int* array, int leftInd, int rightInd, int pivotVal) {
-	printf("Partitioning index %d to %d on %d.\nBefore: ", leftInd, rightInd, pivotVal);
-
-	for (int i = 0; i < 10; i++) {
+void sortsPrintArray(int* array, int len) {
+	for (int i = 0; i < len; i++) {
 		printf("%d ", array[i]);
 	}
-
 	printf("\n");
-	int highInd = rightInd;
-	for (int i = leftInd; i <= highInd;) {
+}
+
+void sortsSwap(int *array, int i, int j) {
+	int tmp = array[i];
+	array[i] = array[j];
+	array[j] = tmp;
+}
+
+void sortsPartition(int* array, int leftInd, int rightInd, int pivotInd) {
+	int pivotVal = array[pivotInd];
+	sortsSwap(array, leftInd, pivotInd);
+	int split = leftInd + 1;
+
+	for (int i = leftInd + 1; i <= rightInd; i++) {
 		if (array[i] <= pivotVal) {
-			i++;
-		} else {
-			int tmp = array[highInd];
-			array[highInd--] = array[i];
-			array[i] = tmp;
+			split++;
+			sortsSwap(array, i, split - 1);
 		}
 	}
-
-	printf("After: ");
-	for (int i = 0; i < 10; i++) {
-		printf("%d ", array[i]);
-	}
-	printf("\n");
-	getchar();
-
-	R = highInd;
-	L = R - 1;
+	sortsSwap(array, leftInd, split-1);
+	R = split;
+	L = split - 2;
 }
 
 void sortsQuicksort(int *array, int left, int right) {
-	sortsPartition(array, left, right, array[(left + right + 1) / 2]);
+	if (right - left <= 0) return;
+
+	sortsPartition(array, left, right, (left + right + 1) / 2);
 	int myR = R;
-	printf("Left %d\n", L);
-	if (left < L) {
-		sortsQuicksort(array, left, L);
-	}
-	printf("Right %d %d\n", myR, R);
-	if (right > myR) {
-		sortsQuicksort(array, myR, right);
-	}
+	sortsQuicksort(array, left, L);
+	sortsQuicksort(array, myR, right);
 }
 
 int main(void) {
-	int array[10] = {2, 5, 0, 6, 3, 4, 1, 9, 8, 7};
+	int array[10] = {2, 5 , 4 , 1, 3, 4, 9, 8, 10, 11};
 	sortsQuicksort(array, 0, 9);
+	sortsPrintArray(array, 10);
 	return 0;
 }
