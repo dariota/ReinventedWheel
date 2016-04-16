@@ -20,6 +20,15 @@ void arraysPrintI(int *array, int start, int end) {
 	printf("\n");
 }
 
+void arraysPrintUC(unsigned char *array, int start, int end) {
+	if (!array || end - start <= 0 || start < 0 || end < 0) return;
+
+	for (int i = start; i <= end; i++) {
+		printf("%x ", array[i]);
+	}
+	printf("\n");
+}
+
 double arraysSumD(double *array, int start, int end) {
 	if (!array ||  end - start < 0 || start < 0 || end < 0) return NAN;
 
