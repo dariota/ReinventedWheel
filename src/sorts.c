@@ -1,16 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 int L, R;
 
-void sortsPrintArray(int* array, int len) {
-	for (int i = 0; i < len; i++) {
-		printf("%d ", array[i]);
-	}
-	printf("\n");
-}
-
 void sortsSwap(int *array, int i, int j) {
+	if (!array || i < 0 || j < 0) return;
+
 	int tmp = array[i];
 	array[i] = array[j];
 	array[j] = tmp;
@@ -32,18 +24,13 @@ void sortsPartition(int* array, int leftInd, int rightInd, int pivotInd) {
 	L = split - 2;
 }
 
-void sortsQuicksort(int *array, int left, int right) {
-	if (right - left <= 0) return;
+void sortsQuick(int *array, int left, int right) {
+	if (right - left <= 0 || !array) return;
 
-	sortsPartition(array, left, right, (left + right + 1) / 2);
+	sortsPartition(array, left, right, left / 2 + right / 2 + 
+	                                   // correct for odd-odd/odd-even
+	                                   ((left % 2 + right % 2) == 2 ? 1 : 0);
 	int myR = R;
 	sortsQuicksort(array, left, L);
 	sortsQuicksort(array, myR, right);
-}
-
-int main(void) {
-	int array[10] = {2, 5 , 4 , 1, 3, 4, 9, 8, 10, 11};
-	sortsQuicksort(array, 0, 9);
-	sortsPrintArray(array, 10);
-	return 0;
 }
