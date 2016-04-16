@@ -1,3 +1,5 @@
+#include "arrays.h"
+
 int L, R;
 
 void sortsSwap(int *array, int i, int j) {
@@ -27,10 +29,9 @@ void sortsPartition(int* array, int leftInd, int rightInd, int pivotInd) {
 void sortsQuick(int *array, int left, int right) {
 	if (right - left <= 0 || !array) return;
 
-	sortsPartition(array, left, right, left / 2 + right / 2 + 
-	                                   // correct for odd-odd/odd-even
-	                                   ((left % 2 + right % 2) == 2 ? 1 : 0);
+	sortsPartition(array, left, right, left / 2 + right / 2 + (left % 2 + right % 2) / 2);
+
 	int myR = R;
-	sortsQuicksort(array, left, L);
-	sortsQuicksort(array, myR, right);
+	sortsQuick(array, left, L);
+	sortsQuick(array, myR, right);
 }
