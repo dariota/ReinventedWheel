@@ -11,9 +11,9 @@ One or more of the above may be firmly tongue in cheek.
 
 ## Compilation
 
-You can just compile with `make src/srcfile.o` in the root directory to create an object file in the src directory (I suck at make, sorry) which you can then do whatever with.
+You can just compile with `make srcfile.o` in the root directory to create an object file in the compiled/ directory which you can then do whatever with.
 
-The makefile there now compiles with `clang src.c -c -Iincludes/ -g -Werror -Wall -Wextra -pedantic -o output.o`. Here's why:
+The makefile there now compiles with `clang src/src.c -c -Iincludes/ -g -Werror -Wall -Wextra -pedantic -o compiled/output.o`. Here's why:
 
 | Flag          | What it does                              | Why I use it                                                                                                                    |
 |:-------------:|:------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|
