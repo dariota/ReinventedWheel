@@ -5,6 +5,7 @@
 // array is null. Adds a newline after the array is printed.
 void arraysPrintD(double *array, int start, int end);
 void arraysPrintI(int *array, int start, int end);
+void arraysPrintUC(unsigned char *array, int start, int end);
 
 // Sums the range from start to end, attempting to avoid floating point
 // rounding errors on addition of large numbers to small.
