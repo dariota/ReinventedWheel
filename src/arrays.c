@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "arrays.h"
-
 void arraysPrintD(double *array, int start, int end) {
 	if (!array || end - start <= 0 || start < 0 || end < 0) return;
 
