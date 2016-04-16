@@ -7,7 +7,7 @@
 void arraysPrintD(double *array, int start, int end) {
 	if (!array || end - start <= 0 || start < 0 || end < 0) return;
 
-	for (int i = start; i < end; i++) {
+	for (int i = start; i <= end; i++) {
 		printf("%f ", array[i]);
 	}
 	printf("\n");
@@ -16,7 +16,7 @@ void arraysPrintD(double *array, int start, int end) {
 void arraysPrintI(int *array, int start, int end) {
 	if (!array || end - start <= 0 || start < 0 || end < 0) return;
 
-	for (int i = start; i < end; i++) {
+	for (int i = start; i <= end; i++) {
 		printf("%d ", array[i]);
 	}
 	printf("\n");
