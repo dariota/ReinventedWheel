@@ -1,18 +1,24 @@
 CC:=clang
-FL:=-g -Werror -Wall -Wextra -pedantic -o
+FL:=-g -Werror -Wall -Wextra -pedantic
 INC:=-Iincludes/
 COM:=compiled/
 SRC:=src/
 
-Systems1415Q2.e: $(addprefix $(COM), bitBuffer.o arrays.o)
+Systems1415Q2.e_dep:=bitBuffer.o arrays.o
 
 override CFLAGS += $(INC) $(FL)
 
-$(COM)%.o: */%.c | $(COM)
-	$(CC) $< -c $(INC) $(FL) $(COM)$(@F)
+vpath %.c $(SRC)
+vpath %.h $(INC)
 
-%.e: */%.c
-	$(CC) $(firstword $^) $(wordlist 2, $(words $^), $^) $(INC) $(FL) $@
+.SECONDEXPANSION:
+
+.PRECIOUS: $(COM)%.o
+$(COM)%.o: %.c %.h | $(COM)
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
+
+%.e: %.c $$(addprefix $$(COM), $$($$@_dep))
+	$(LINK.c) $^ $(OUTPUT_OPTION)
 
 .PRECIOUS: %/
 %/:
