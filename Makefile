@@ -16,6 +16,7 @@ $(COM)%.o: */%.c | $(COM)
 %/:
 	mkdir -p $@
 
+.PHONY: clean
 clean:
-	rm -f *.e **/*.o
-	rm -rf $(COM)
+	$(RM) *.e
+	$(RM) -r $(COM)
