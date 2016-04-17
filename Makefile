@@ -1,8 +1,8 @@
-CC=clang
-FL=-g -Werror -Wall -Wextra -pedantic -o
-INC=-Iincludes/
-COM=compiled/
-SRC=src/
+CC:=clang
+FL:=-g -Werror -Wall -Wextra -pedantic -o
+INC:=-Iincludes/
+COM:=compiled/
+SRC:=src/
 
 Systems1415Q2.e: $(addprefix $(COM), bitBuffer.o arrays.o)
 
