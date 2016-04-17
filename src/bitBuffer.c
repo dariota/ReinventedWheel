@@ -5,8 +5,6 @@
 #include "bitBuffer.h"
 #include "error.h"
 
-#include <stdio.h>
-
 struct bitBuffer *bufferFromStore(unsigned char *store, int symbolLen,
                                   int width) {
 	struct bitBuffer *buffer = malloc(sizeof(struct bitBuffer));
@@ -51,7 +49,7 @@ int bufferAppend(struct bitBuffer *buffer, unsigned char bits) {
 		return 0;
 	}
 
-	bits = bits && buffer->mask;
+	bits = bits & buffer->mask;
 
 	int charInd = buffer->bitWritePos / CHAR_BIT;
 	int bitInd = CHAR_BIT - buffer->bitWritePos % CHAR_BIT;
@@ -59,15 +57,15 @@ int bufferAppend(struct bitBuffer *buffer, unsigned char bits) {
 	if (bitInd < buffer->bitWidth) {
 		int rShift = (buffer->bitWidth - bitInd);
 		buffer->store[charInd] &= ~(buffer->mask >> rShift);
-		buffer->store[charInd] |= bits >> rShift;
+				buffer->store[charInd] |= bits >> rShift;
 
 		int lShift = (CHAR_BIT - buffer->bitWidth);
 		buffer->store[charInd + 1] &= ~(buffer->mask << lShift);
-		buffer->store[charInd + 1] |= bits << lShift;
+				buffer->store[charInd + 1] |= bits << lShift;
 	} else {
 		int lShift = bitInd - buffer->bitWidth;
 		buffer->store[charInd] &= ~(buffer->mask << lShift);
-		buffer->store[charInd] |= bits << lShift;
+				buffer->store[charInd] |= bits << lShift;
 	}
 
 	buffer->bitWritePos += buffer->bitWidth;
