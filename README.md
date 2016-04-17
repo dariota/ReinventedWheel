@@ -11,8 +11,6 @@ One or more of the above may be firmly tongue in cheek.
 
 ## Compilation
 
-You can just compile with `make compiled/srcfile.o` in the root directory to create an object file in the compiled/ directory which you can then do whatever with.
-
 For the executables, you can `make Systems1415.e` (for example) to make something that can be executed. Note that dependencies need to be manually added to the makefile, see the one for Systems as an example.
 
 The makefile there now compiles with `clang src/src.c -c -Iincludes/ -g -Werror -Wall -Wextra -pedantic -o compiled/output.o`. Here's why:
