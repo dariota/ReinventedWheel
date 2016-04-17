@@ -4,17 +4,17 @@ INC=-Iincludes/
 COM=compiled/
 SRC=src/
 
-Systems1415Q2.e: bitBuffer.o arrays.o
+Systems1415Q2.e: $(addprefix $(COM), bitBuffer.o arrays.o)
 
-%.o: */%.c | $(COM)
+$(COM)%.o: */%.c | $(COM)
 	$(CC) $< -c $(INC) $(FL) $(COM)$(@F)
 
 %.e: */%.c
-	$(CC) $(firstword $^) $(addprefix $(COM), $(wordlist 2, $(words $^), $^)) $(INC) $(FL) $@
+	$(CC) $(firstword $^) $(wordlist 2, $(words $^), $^) $(INC) $(FL) $@
 
 .PRECIOUS: %/
 %/:
-	mkdir $@
+	mkdir -p $@
 
 clean:
 	rm -f *.e **/*.o
