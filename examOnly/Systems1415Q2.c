@@ -30,7 +30,7 @@ unsigned char *compressNan(char *input, int *resultLength){
 	}
 
 	unsigned char *result = buffer->store;
-	freeBufferNotStore(buffer);
+	bufferFreeNotStore(buffer);
 
 	return result;
 }
@@ -65,22 +65,20 @@ char *uncompressNan(unsigned char *input, int inputLength) {
 	}
 	uncompressed[inputLength] = '\0';
 
-	freeBufferNotStore(buffer);
+	bufferFreeNotStore(buffer);
 
 	return uncompressed;
 }
 
-int main() {
-	char code[8] = "GATTACA";
+int main(int argc, char **argv) {
+	if (argc != 2) {
+		printf("Usage: %s <NAN sequence>\n", argv[0]);
+		return 1;
+	}
 	int len;
 
-	unsigned char *compressed = compressNan(code, &len);
-	printf("%d", len / CHAR_BIT + (len % CHAR_BIT ? 1 : 0) - 1);
-	arraysPrintUC(compressed, 0, 1);//len / CHAR_BIT + (len % CHAR_BIT ? 1 : 0) - 1);
-
-	char *uncompressed = uncompressNan(compressed, len);
+	char *uncompressed = uncompressNan(compressNan(argv[1], &len), len);
 	printf("%s\n", uncompressed);
 
 	return 0;
-}
-
+} 
