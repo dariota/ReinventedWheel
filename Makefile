@@ -6,6 +6,8 @@ SRC:=src/
 
 Systems1415Q2.e: $(addprefix $(COM), bitBuffer.o arrays.o)
 
+override CFLAGS += $(INC) $(FL)
+
 $(COM)%.o: */%.c | $(COM)
 	$(CC) $< -c $(INC) $(FL) $(COM)$(@F)
 
