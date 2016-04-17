@@ -21,7 +21,7 @@ The makefile there now compiles with `clang src/src.c -c -Iincludes/ -g -Werror 
 |:-------------:|:------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|
 | **-c**        | Disables linking                          | When you're just building individual files, they don't need to be linked, that comes later.                                     |
 | **-I**        | Tells the compiler where the .h files are | If you don't use this one, you'll just get a fatal error when it can't find header files it's looking for.                      |
-| **-g**        | Enables debugging symbols                 | I often use `valgrind`, enabling debugging symbols lets it print out line numbers when it can so I can find my bugs faster. |
+| **-g**        | Enables debugging symbols                 | I often use `valgrind`, enabling debugging symbols lets it print out line numbers when it can so I can find my bugs faster.     |
 | **-Werror**   | Turns warnings into errors                | This forces me to fix all warnings before moving on - letting them pile up seems like a terrible practice to me.                |
 | **-Wall**     | Enables more warnings                     | More warnings is a good thing, they help you catch your mistakes sooner rather than later, and any help is good.                |
 | **-Wextra**   | Enables even more warnings                | Same as the last.                                                                                                               |
