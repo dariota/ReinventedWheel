@@ -39,9 +39,9 @@ void lListInsert(struct LinkedList *list, void *data) {
 	if (!list) return;
 
 	if (!list->head) {
-		list->head = list->tail = newNode(data);
+		list->head = list->tail = lListNewNode(data);
 	} else {
-		list->tail->next = newNode(data);
+		list->tail->next = lListNewNode(data);
 		list->tail = list->tail->next;
 	}
 }
@@ -53,7 +53,7 @@ void *lListGetHead(struct LinkedList *list) {
 	void *data = head->data;
 
 	list->head = head->next;
-	freeNode(head);
+	lListFreeNode(head);
 
 	return data;
 }

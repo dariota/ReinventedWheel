@@ -7,7 +7,7 @@ struct bitset *bset_new(int size) {
 	size = size % 8 == 0 ? size : size + 8 - size % 8;
 	myBitset->byteSize = size/8;
 	myBitset->values = malloc(size/8);
-	return my_bitset;
+	return myBitset;
 }
 
 // LSB is bit 0
