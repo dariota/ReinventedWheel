@@ -30,7 +30,7 @@ void arraysPrintUC(unsigned char *array, int start, int end) {
 }
 
 double arraysSumD(double *array, int start, int end) {
-	if (!array ||  end - start < 0 || start < 0 || end < 0) return NAN;
+	if (!array ||  end - start < 0 || start < 0 || end < 0) return nan("");
 
 	int len = end - start + 1;
 	double *copy = malloc(sizeof(double) * len);

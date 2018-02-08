@@ -13,7 +13,7 @@ void arraysPrintUC(unsigned char *array, int start, int end);
 // is null. Returns 0 if the range is 0.
 // Uses auxiliary space equal to the size of the range.
 //
-// NOTE: Check for NaN by checking for inequality with self. (i.e. x != x)
+// NOTE: Check for NaN by checking for inequality with isnan(double).
 // (x == NAN) DOES NOT WORK
 double arraysSumD(double *array, int start, int end);
 
